@@ -1,0 +1,1 @@
+cmd_/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/kexec_load.ko := arm-unknown-linux-gnueabi-ld -EL -r  -T /root/OLYMPUSENGINEERING/hackkrn/scripts/module-common.lds --build-id -o /root/OLYMPUS/newkrn/kexec-mod/kexec-mod/kexec_load.ko /root/OLYMPUS/newkrn/kexec-mod/kexec-mod/kexec_load.o /root/OLYMPUS/newkrn/kexec-mod/kexec-mod/kexec_load.mod.o
