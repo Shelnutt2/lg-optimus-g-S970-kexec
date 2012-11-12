@@ -1,3 +1,9 @@
+Modified and updated for LG Optimus G. Place kernel source in kernel/.
+
+Seth Shelnutt 2012
+
+ORIGINAL README:
+
 Android kexec port
 By Matthew Veety, et al.
 
