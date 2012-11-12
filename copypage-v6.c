@@ -2,7 +2,6 @@
  *  linux/arch/arm/mm/copypage-v6.c
  *
  *  Copyright (C) 2002 Deep Blue Solutions Ltd, All Rights Reserved.
- * This Edition is maintained by Matthew Veety (aliasxerog) <mveety@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -28,19 +27,21 @@
 #define from_address	(0xffff8000)
 #define to_address	(0xffffc000)
 
+//static DEFINE_RAW_SPINLOCK(v6_lock);
+
 /*
  * Copy the user page.  No aliasing to deal with so we can just
  * attack the kernel's existing mapping of these pages.
  */
-
 static void v6_copy_user_highpage_nonaliasing(struct page *to,
-	struct page *from, unsigned long vaddr)
+	struct page *from, unsigned long vaddr, struct vm_area_struct *vma)
 {
 	void *kto, *kfrom;
 
 	kfrom = kmap_atomic(from, KM_USER0);
 	kto = kmap_atomic(to, KM_USER1);
 	copy_page(kto, kfrom);
+	__cpuc_flush_dcache_area(kto, PAGE_SIZE);
 	kunmap_atomic(kto, KM_USER1);
 	kunmap_atomic(kfrom, KM_USER0);
 }
@@ -57,7 +58,9 @@ static void v6_clear_user_highpage_nonaliasing(struct page *page, unsigned long 
 }
 
 
+
 struct cpu_user_fns v6_user_fns __initdata = {
 	.cpu_clear_user_highpage = v6_clear_user_highpage_nonaliasing,
 	.cpu_copy_user_highpage	= v6_copy_user_highpage_nonaliasing,
 };
+

@@ -1,0 +1,1 @@
+cmd_/mnt/Android/optimusg/olympus-kexec/built-in.o :=  rm -f /mnt/Android/optimusg/olympus-kexec/built-in.o; /mnt/Android/heroc/new/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi-ar rcs /mnt/Android/optimusg/olympus-kexec/built-in.o

@@ -23,7 +23,7 @@
 #include <linux/pm.h>
 #include <linux/device.h>
 #include <linux/mutex.h>
-#include <linux/smp_lock.h>
+//#include <linux/smp_lock.h>
 
 
 #define to_sysdev(k) container_of(k, struct sys_device, kobj)
@@ -54,7 +54,7 @@ void sysdev_shutdown(void)
 
 	pr_debug("Shutting Down System Devices\n");
 
-	lock_kernel();
+	//lock_kernel();
 
 	sysdev_class_register(&dummy_sysclass);
 	cls=&dummy_sysclass;
@@ -68,19 +68,19 @@ void sysdev_shutdown(void)
 			 kobject_name(&cls->kset.kobj));
 
 		list_for_each_entry(sysdev, &cls->kset.list, kobj.entry) {
-			struct sysdev_driver * drv;
+			//struct sysdev_driver * drv;
 			pr_debug(" %s\n", kobject_name(&sysdev->kobj));
 
 			/* Call auxillary drivers first */
-			list_for_each_entry(drv, &cls->drivers, entry) {
+		/*	list_for_each_entry(drv, &cls->drivers, entry) {
 				if (drv->shutdown)
 					drv->shutdown(sysdev);
-			}
+			} */
 
 			/* Now call the generic one */
-			if (cls->shutdown)
-				cls->shutdown(sysdev);
+			//if (cls->shutdown)
+				//cls->shutdown(sysdev);
 		}
 	}
-	unlock_kernel();
+	//unlock_kernel();
 }

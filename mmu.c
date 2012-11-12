@@ -2,7 +2,6 @@
  *  linux/arch/arm/mm/mmu.c
  *
  *  Copyright (C) 1995-2005 Russell King
- * This Edition is maintained by Matthew Veety (aliasxerog) <mveety@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -16,7 +15,6 @@
 #include <linux/mman.h>
 #include <linux/nodemask.h>
 #include <linux/ioport.h>
-//#include <linux/lttlite-events.h>
 
 #include <asm/cputype.h>
 #include <asm/mach-types.h>
@@ -30,6 +28,7 @@
 #include <asm/mach/map.h>
 
 #include "mm.h"
+#define FIRST_USER_PGD_NR	1
 
 /*
  * In order to soft-boot, we need to insert a 1:1 mapping in place of
@@ -42,21 +41,10 @@ void setup_mm_for_reboot(char mode)
 	pgd_t *pgd;
 	int i;
 
-		/* EternityPRJ:SEMC:SYS: Updated. */
-        if (current->mm && current->mm->pgd) {
-                pgd = current->mm->pgd;
-        }
-        /*What if we are in interrupt Context ??
-		-- USE ONLY IN KEXEC KERNEL!! -- */
-/*        else {
-                if(current->active_mm && current->active_mm->pgd){
-                        pgd = current->active_mm->pgd;
-                }
-                else {
-                        pgd = init_mm.pgd;
-                }
-        }*/
-		/* EternityPRJ:SEMC:SYS: End. */
+	if (current->mm && current->mm->pgd)
+		pgd = current->mm->pgd;
+	else
+		pgd = init_mm.pgd;
 
 	base_pmdval = PMD_SECT_AP_WRITE | PMD_SECT_AP_READ | PMD_TYPE_SECT;
 
@@ -70,3 +58,4 @@ void setup_mm_for_reboot(char mode)
 		flush_pmd_entry(pmd);
 	}
 }
+

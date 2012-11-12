@@ -1,34 +1,44 @@
-cmd_/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.o := arm-unknown-linux-gnueabi-gcc -Wp,-MD,/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/.proc-v7.o.d  -nostdinc -isystem /usr/lib/gcc/arm-unknown-linux-gnueabi/4.5.2/include -Iinclude  -I/root/OLYMPUSENGINEERING/hackkrn/arch/arm/include -include include/linux/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-tegra/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float -gdwarf-2      -DMODULE -c -o /root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.o /root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.S
+cmd_/mnt/Android/optimusg/olympus-kexec/proc-v7.o := /mnt/Android/optimusg/olympus-kexec/kernel/scripts/gcc-wrapper.py /mnt/Android/heroc/new/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi-gcc -Wp,-MD,/mnt/Android/optimusg/olympus-kexec/.proc-v7.o.d  -nostdinc -isystem /mnt/Android/heroc/new/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/include -I/mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include include/generated/autoconf.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -D__ASSEMBLY__ -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables  -D__LINUX_ARM_ARCH__=7 -march=armv7-a  -include asm/unified.h -msoft-float -gdwarf-2      -DMODULE  -c -o /mnt/Android/optimusg/olympus-kexec/proc-v7.o /mnt/Android/optimusg/olympus-kexec/proc-v7.S
 
-deps_/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.o := \
-  /root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.S \
+source_/mnt/Android/optimusg/olympus-kexec/proc-v7.o := /mnt/Android/optimusg/olympus-kexec/proc-v7.S
+
+deps_/mnt/Android/optimusg/olympus-kexec/proc-v7.o := \
     $(wildcard include/config/smp.h) \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/arm/errata/430973.h) \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/unified.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/unified.h \
     $(wildcard include/config/arm/asm/unified.h) \
     $(wildcard include/config/thumb2/kernel.h) \
   include/linux/linkage.h \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/linkage.h \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/assembler.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/linkage.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/assembler.h \
     $(wildcard include/config/cpu/feroceon.h) \
     $(wildcard include/config/trace/irqflags.h) \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/ptrace.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/ptrace.h \
     $(wildcard include/config/cpu/endian/be8.h) \
     $(wildcard include/config/arm/thumb.h) \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/hwcap.h \
-  include/asm/asm-offsets.h \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/pgtable-hwdef.h \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/pgtable.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/hwcap.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/domain.h \
+    $(wildcard include/config/verify/permission/fault.h) \
+    $(wildcard include/config/io/36.h) \
+    $(wildcard include/config/cpu/use/domains.h) \
+    $(wildcard include/config/emulate/domain/manager/v7.h) \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/asm-offsets.h \
+  include/generated/asm-offsets.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/pgtable-hwdef.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/pgtable.h \
+    $(wildcard include/config/arm/dma/mem/bufferable.h) \
     $(wildcard include/config/highpte.h) \
+  include/linux/const.h \
   include/asm-generic/4level-fixup.h \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/proc-fns.h \
-    $(wildcard include/config/cpu/32.h) \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/proc-fns.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/glue-proc.h \
     $(wildcard include/config/cpu/arm610.h) \
     $(wildcard include/config/cpu/arm7tdmi.h) \
     $(wildcard include/config/cpu/arm710.h) \
@@ -52,30 +62,79 @@ deps_/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.o := \
     $(wildcard include/config/cpu/xsc3.h) \
     $(wildcard include/config/cpu/mohawk.h) \
     $(wildcard include/config/cpu/v6.h) \
+    $(wildcard include/config/cpu/v6k.h) \
     $(wildcard include/config/cpu/v7.h) \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/memory.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/glue.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/page.h \
+    $(wildcard include/config/cpu/copy/v3.h) \
+    $(wildcard include/config/cpu/copy/v4wt.h) \
+    $(wildcard include/config/cpu/copy/v4wb.h) \
+    $(wildcard include/config/cpu/copy/feroceon.h) \
+    $(wildcard include/config/cpu/copy/fa.h) \
+    $(wildcard include/config/cpu/copy/v6.h) \
+    $(wildcard include/config/have/arch/pfn/valid.h) \
+    $(wildcard include/config/memory/hotplug/sparse.h) \
+  include/asm-generic/getorder.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/memory.h \
     $(wildcard include/config/page/offset.h) \
     $(wildcard include/config/highmem.h) \
     $(wildcard include/config/dram/size.h) \
     $(wildcard include/config/dram/base.h) \
-    $(wildcard include/config/zone/dma.h) \
-    $(wildcard include/config/discontigmem.h) \
-  include/linux/const.h \
-  arch/arm/mach-tegra/include/mach/memory.h \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/sizes.h \
+    $(wildcard include/config/have/tcm.h) \
+    $(wildcard include/config/arm/patch/phys/virt.h) \
+    $(wildcard include/config/arm/patch/phys/virt/16bit.h) \
+  include/linux/types.h \
+    $(wildcard include/config/uid16.h) \
+    $(wildcard include/config/lbdaf.h) \
+    $(wildcard include/config/arch/dma/addr/t/64bit.h) \
+    $(wildcard include/config/phys/addr/t/64bit.h) \
+    $(wildcard include/config/64bit.h) \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/types.h \
+  include/asm-generic/int-ll64.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/bitsperlong.h \
+  include/asm-generic/bitsperlong.h \
+  arch/arm/mach-msm/include/mach/memory.h \
+    $(wildcard include/config/phys/offset.h) \
+    $(wildcard include/config/arch/msm7x30.h) \
+    $(wildcard include/config/sparsemem.h) \
+    $(wildcard include/config/vmsplit/3g.h) \
+    $(wildcard include/config/arch/msm/arm11.h) \
+    $(wildcard include/config/arch/msm/cortex/a5.h) \
+    $(wildcard include/config/cache/l2x0.h) \
+    $(wildcard include/config/arch/msm8x60.h) \
+    $(wildcard include/config/arch/msm8960.h) \
+    $(wildcard include/config/lge/handle/panic.h) \
+    $(wildcard include/config/dont/map/hole/after/membank0.h) \
+    $(wildcard include/config/arch/msm/scorpion.h) \
+    $(wildcard include/config/arch/msm/krait.h) \
+    $(wildcard include/config/arch/msm7x27.h) \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/sizes.h \
+  include/asm-generic/sizes.h \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/flatmem.h) \
+    $(wildcard include/config/discontigmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
-    $(wildcard include/config/sparsemem.h) \
-  arch/arm/mach-tegra/include/mach/vmalloc.h \
-  /root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-macros.S \
+  arch/arm/mach-msm/include/mach/vmalloc.h \
+    $(wildcard include/config/vmsplit/2g.h) \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/tlbflush.h \
+    $(wildcard include/config/smp/on/up.h) \
+    $(wildcard include/config/cpu/tlb/v3.h) \
+    $(wildcard include/config/cpu/tlb/v4wt.h) \
+    $(wildcard include/config/cpu/tlb/fa.h) \
+    $(wildcard include/config/cpu/tlb/v4wbi.h) \
+    $(wildcard include/config/cpu/tlb/feroceon.h) \
+    $(wildcard include/config/cpu/tlb/v4wb.h) \
+    $(wildcard include/config/cpu/tlb/v6.h) \
+    $(wildcard include/config/cpu/tlb/v7.h) \
+    $(wildcard include/config/arm/errata/720789.h) \
+  /mnt/Android/optimusg/olympus-kexec/proc-macros.S \
     $(wildcard include/config/cpu/dcache/writethrough.h) \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/thread_info.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/thread_info.h \
     $(wildcard include/config/arm/thumbee.h) \
-  /root/OLYMPUSENGINEERING/hackkrn/arch/arm/include/asm/fpstate.h \
+  /mnt/Android/optimusg/olympus-kexec/kernel/arch/arm/include/asm/fpstate.h \
     $(wildcard include/config/vfpv3.h) \
     $(wildcard include/config/iwmmxt.h) \
 
-/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.o: $(deps_/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.o)
+/mnt/Android/optimusg/olympus-kexec/proc-v7.o: $(deps_/mnt/Android/optimusg/olympus-kexec/proc-v7.o)
 
-$(deps_/root/OLYMPUS/newkrn/kexec-mod/kexec-mod/proc-v7.o):
+$(deps_/mnt/Android/optimusg/olympus-kexec/proc-v7.o):

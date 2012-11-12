@@ -22,7 +22,7 @@
 #include <linux/hardirq.h>
 #include <linux/elf.h>
 #include <linux/elfcore.h>
-#include <linux/utsrelease.h>
+#include <generated/utsrelease.h>
 #include <linux/utsname.h>
 #include <linux/numa.h>
 #include <linux/suspend.h>
@@ -33,8 +33,6 @@
 #include <linux/console.h>
 #include <linux/vmalloc.h>
 
-//#include "kernel/arch/arm/include/asm/kexec.h"
-
 #include <asm/page.h>
 #include <asm/uaccess.h>
 #include <asm/io.h>
@@ -44,9 +42,6 @@
 
 MODULE_LICENSE("GPL");
 
-/* Provide a dummy definition to avoid build failures. */
-static inline void crash_setup_regs(struct pt_regs *newregs,
-		                                        struct pt_regs *oldregs) { }
 /* Syscall table */
 void **sys_call_table;
 
@@ -187,8 +182,8 @@ static int do_kimage_alloc(struct kimage **rimage, unsigned long entry,
 
 		mstart = image->segment[i].mem;
 		mend   = mstart + image->segment[i].memsz;
-		if ((mstart & ~PAGE_MASK) || (mend & ~PAGE_MASK))
-			goto out;
+	/*   	if ((mstart & ~PAGE_MASK) || (mend & ~PAGE_MASK))
+			goto out; */
 		if (mend >= KEXEC_DESTINATION_MEMORY_LIMIT)
 			goto out;
 	}
@@ -340,6 +335,8 @@ static int kimage_crash_alloc(struct kimage **rimage, unsigned long entry,
 		goto out;
 	}
 
+	*rimage = image;
+	return 0;
 	result = 0;
 out:
 	if (result == 0)
@@ -1451,7 +1448,7 @@ unsigned long **find_sys_call_table(void)  {
      unsigned long ptr;
      extern int loops_per_jiffy;
       sctable = NULL;
-     for (ptr = (unsigned long)&unlock_kernel; ptr < (unsigned long)&loops_per_jiffy; ptr += sizeof(void *))    {
+     for (ptr = (unsigned long)&mutex_unlock; ptr < (unsigned long)&loops_per_jiffy; ptr += sizeof(void *))    {
          unsigned long *p;
          p = (unsigned long *)ptr;
          if (p[__NR_close] == (unsigned long) sys_close)       {
@@ -1470,7 +1467,7 @@ static int __init kexec_module_init(void)
 //		return -1;  // do not load
 //	}
 
-	sys_call_table=(void **)0xc003b364;
+	sys_call_table=(void **)0xc003d004;
 
 	/* Set kexec_load() syscall. */
 	sys_call_table[__NR_kexec_load]=kexec_load;
@@ -1543,4 +1540,5 @@ static int __init kexec_module_init(void)
 }
 
 module_init(kexec_module_init)
+
 

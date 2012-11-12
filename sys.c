@@ -8,7 +8,7 @@
 #include <linux/mm.h>
 #include <linux/utsname.h>
 #include <linux/mman.h>
-#include <linux/smp_lock.h>
+//#include <linux/smp_lock.h>
 #include <linux/notifier.h>
 #include <linux/reboot.h>
 #include <linux/prctl.h>
@@ -91,9 +91,9 @@ asmlinkage long reboot(int magic1, int magic2, unsigned int cmd, void __user *ar
 		                magic2 != LINUX_REBOOT_MAGIC2C))
 			return -EINVAL;
 
-		lock_kernel();
+		//mutex_lock(&kexec_mutex);
 		ret = kernel_kexec();
-		unlock_kernel();
+		//mutex_unlock(&kexec_mutex);
 		return ret;
 	} else {
 		return original_reboot(magic1, magic2, cmd, arg);

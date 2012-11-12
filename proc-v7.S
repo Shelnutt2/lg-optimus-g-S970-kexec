@@ -18,6 +18,8 @@
 #include <asm/pgtable.h>
 
 #include "proc-macros.S"
+#define L_PTE_WRITE             (1 << 7)
+#define L_PTE_EXEC              (1 << 9)
 
 #define TTB_C		(1 << 0)
 #define TTB_S		(1 << 1)
